@@ -15,7 +15,7 @@ namespace LETO.ECS
             {
                 _bindedSystems.Add(typeof(T));
                 var context = new BindSystemContext<T>();
-                context.Bind();
+                context.Bind(installer);
             }
 
             return this;
@@ -35,16 +35,16 @@ namespace LETO.ECS
         }
 
         private ref struct BindSystemContext<T>
+            where T : class
         {
-            public void Bind()
+            public void Bind(in IInstaller installer)
             {
-                //execute bind object in DI 
+                installer.Bind<T>().AsSingle();
             }
 
             public T Get()
             {
-                //execute get object from DI
-                throw new NotImplementedException();
+                return EmptyDIConnector.Get<T>();
             }
         }
     }

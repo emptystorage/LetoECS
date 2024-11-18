@@ -9,6 +9,11 @@ namespace LETO.ECS
         public event Action FixedUpdateTick;
         public event Action LateUpdateTick;
 
+        public static ECSUpdater Initialize()
+        {
+            return new GameObject(nameof(ECSUpdater)).AddComponent<ECSUpdater>();
+        }
+
         void Update()
         {
             UpdateTick?.Invoke();
