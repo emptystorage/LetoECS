@@ -24,7 +24,7 @@ namespace LETO.ECS
             FixedUpdateTick?.Invoke();
         }
 
-        void LaterUpdate()
+        void LateUpdate()
         {
             LateUpdateTick?.Invoke();
         }
